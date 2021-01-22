@@ -15,11 +15,7 @@ Dado("que acesso a página para cadastrar multiplos usuários:") do
 end
 
 Quando("submeto os usuários abaixo:") do |table|
-  multi = table.hashes
-  #i = 0
-  #5.times do
-  #@multi_page.create(multi)
-  #puts multi[i][:nome]
+  @multi = table.hashes
 
   multi.each do |item|
     @multi_page.cadastrar(item[:nome], item[:email], item[:senha])
@@ -29,5 +25,12 @@ Quando("submeto os usuários abaixo:") do |table|
 end
 
 Então("devo ver esses usuarios na tabela") do
-  pending # Write code here that turns the phrase above into concrete actions
+  #expect(@dash_page.equipo_list).to have_content @multi[:nome]
+  #expect(@dash_page.equipo_list).to have_content "R$#{@anuncio[:preco]}/dia"
+
+  expect(
+    @dash_page.has_no_equipo?(@multi[:name])
+  ).to be true
+
+
 end

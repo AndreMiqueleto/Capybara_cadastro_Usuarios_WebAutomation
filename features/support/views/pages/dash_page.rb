@@ -10,7 +10,7 @@ class DashPage
   end
 
   def has_no_user?(name)
-    return page.has_no_css?(".equipo-list li", text: name)
+    return page.has_css?(".equipo-list li", text: name)
   end
 
   def request_removal(name)
